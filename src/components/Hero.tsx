@@ -6,6 +6,15 @@ export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [duration, setDuration] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  // Check viewport on mount and resize
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -25,8 +34,21 @@ export function Hero() {
     }
   }, []);
 
+  // Control auto-play based on device (Play ONCE on mobile, static scrub on desktop)
+  useEffect(() => {
+    if (videoRef.current) {
+      if (!isDesktop) {
+        videoRef.current.loop = false; // Só toca uma vez
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isDesktop]);
+
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (videoRef.current && duration > 0) {
+    if (isDesktop && videoRef.current && duration > 0) {
       requestAnimationFrame(() => {
         if (videoRef.current) {
           videoRef.current.currentTime = latest * duration;
@@ -36,9 +58,9 @@ export function Hero() {
   });
 
   return (
-    <section ref={containerRef} className="relative h-[300vh] w-full bg-[#060608]">
+    <section ref={containerRef} className="relative md:h-[300vh] min-h-dvh w-full bg-[#060608]">
       {/* Sticky Container */}
-      <div className="sticky top-0 h-dvh w-full overflow-hidden flex items-center justify-start pt-20" id="reel">
+      <div className="md:sticky relative top-0 min-h-dvh w-full overflow-hidden flex items-center justify-start pt-20" id="reel">
         {/* Background Video */}
         <div className="absolute inset-0 z-0 bg-[#060608]">
           <div className="absolute inset-0 bg-linear-to-r from-[#060608] via-[#060608]/40 to-transparent z-10"></div>
@@ -131,7 +153,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20 pointer-events-none"
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-20 pointer-events-none"
         >
           <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-medium">Role para animar</span>
           <div className="w-px h-12 bg-white/10 relative overflow-hidden">
