@@ -1,7 +1,21 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from '@phosphor-icons/react';
+import { WhatsappLogo } from '@phosphor-icons/react';
+import { useState } from 'react';
 
 export function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !message) return;
+    const text = `Olá Maria Eduarda! Meu nome é ${name}${email ? ` (Email: ${email})` : ''}.\n\n${message}`;
+    const encodedText = encodeURIComponent(text);
+    const waUrl = `https://wa.me/5521972248612?text=${encodedText}`;
+    window.open(waUrl, '_blank');
+  };
+
   return (
     <section id="contato" className="relative py-32 w-full bg-[#060608] border-t border-white/5">
       <div className="max-w-4xl mx-auto px-6">
@@ -27,6 +41,7 @@ export function Contact() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
           className="space-y-8"
+          onSubmit={handleSubmit}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-2">
@@ -35,6 +50,9 @@ export function Contact() {
                 type="text" 
                 id="name" 
                 placeholder="Como prefere ser chamado?" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
                 className="bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-white/50 transition-colors placeholder:text-zinc-700 font-sans"
               />
             </div>
@@ -44,6 +62,8 @@ export function Contact() {
                 type="email" 
                 id="email" 
                 placeholder="seu@email.com" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-white/50 transition-colors placeholder:text-zinc-700 font-sans"
               />
             </div>
@@ -55,17 +75,20 @@ export function Contact() {
               id="message" 
               rows={4}
               placeholder="Detalhe o escopo, prazo e o que você imaginou..." 
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
               className="bg-transparent border-b border-white/10 py-4 text-white focus:outline-none focus:border-white/50 transition-colors placeholder:text-zinc-700 font-sans resize-none"
             ></textarea>
           </div>
 
           <div className="pt-8 flex justify-end">
             <button 
-              type="button" 
+              type="submit" 
               className="group relative liquid-glass px-10 py-5 rounded-full flex items-center gap-4 overflow-hidden transition-all duration-300 hover:bg-white/10 active:-translate-y-px active:scale-[0.98] cursor-pointer"
             >
-              <span className="relative z-10 text-white font-medium tracking-widest uppercase text-xs">Enviar Mensagem</span>
-              <ArrowRight className="relative z-10 text-white w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10 text-white font-medium tracking-widest uppercase text-xs">Enviar no WhatsApp</span>
+              <WhatsappLogo weight="fill" className="relative z-10 text-white w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </motion.form>
