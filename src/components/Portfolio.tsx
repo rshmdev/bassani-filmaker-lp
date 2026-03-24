@@ -26,7 +26,6 @@ const projects = [
   {
     id: 3,
     title: "Bastidores",
-    category: "Gravação da novela - Kwai",
     image: img3,
     colSpan: "col-span-1",
     rowSpan: "row-span-1",
@@ -107,12 +106,14 @@ export function Portfolio() {
               {/* Diffusion Shadow & Information Overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2 font-medium bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
-                  {project.category}
-                </p>
-                <h3 className="text-2xl md:text-3xl font-serif text-white">{project.title}</h3>
-              </div>
+              {project.category && (
+                <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2 font-medium bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
+                    {project.category}
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-serif text-white">{project.title}</h3>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
