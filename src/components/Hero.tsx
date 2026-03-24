@@ -106,7 +106,8 @@ export function Hero() {
                   <p className="text-zinc-400 tracking-[0.2em] text-xs uppercase font-medium">Fotógrafa e Filmaker</p>
                 </motion.div>
 
-                <motion.h1 
+                <h1 className="sr-only">Maria Eduarda Bassani - Fotógrafa e Filmaker</h1>
+                <motion.h2 
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80, damping: 20 } }
@@ -115,7 +116,7 @@ export function Hero() {
                 >
                   Capturando <br />
                   <span className="text-zinc-500 italic font-light hover:text-white transition-colors duration-700">momentos.</span>
-                </motion.h1>
+                </motion.h2>
 
                 <motion.p 
                   variants={{
