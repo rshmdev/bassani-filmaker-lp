@@ -39,6 +39,7 @@ export function About() {
             <img 
               src={img0} 
               alt="Fotógrafa em ação"
+              loading="lazy"
               className="w-full h-full object-cover opacity-80"
             />
             

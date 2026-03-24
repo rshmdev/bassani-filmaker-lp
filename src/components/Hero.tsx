@@ -50,11 +50,9 @@ export function Hero() {
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (isDesktop && videoRef.current && duration > 0) {
-      requestAnimationFrame(() => {
-        if (videoRef.current) {
-          videoRef.current.currentTime = latest * duration;
-        }
-      });
+      if (videoRef.current) {
+        videoRef.current.currentTime = latest * duration;
+      }
     }
   });
 

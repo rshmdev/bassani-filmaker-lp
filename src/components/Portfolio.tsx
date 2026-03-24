@@ -100,6 +100,7 @@ export function Portfolio() {
               <img
                 src={project.image}
                 alt={project.title}
+                loading="lazy"
                 className={`w-full h-full object-cover ${project.objectPosition || 'object-center'} transform transition-transform duration-1000 group-hover:scale-105 opacity-60 mix-blend-luminosity group-hover:opacity-100 group-hover:mix-blend-normal`}
               />
 
