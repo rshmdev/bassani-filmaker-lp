@@ -18,7 +18,6 @@ export function Hero() {
         setDuration(videoRef.current?.duration || 0);
       };
       videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
-      // In case it's already loaded
       if (videoRef.current.readyState >= 1) {
         handleLoadedMetadata();
       }
@@ -54,8 +53,8 @@ export function Hero() {
             preload="auto"
           />
           
-          {/* Film grain effect */}
-          <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png')] opacity-10 mix-blend-overlay z-20 pointer-events-none"></div>
+          {/* Film grain effect (Desktop only to save GPU on Mobile) */}
+          <div className="hidden md:block absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png')] opacity-10 mix-blend-overlay z-20 pointer-events-none"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-20 -mt-10">
@@ -135,7 +134,7 @@ export function Hero() {
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20 pointer-events-none"
         >
           <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-medium">Role para animar</span>
-          <div className="w-[1px] h-12 bg-white/10 relative overflow-hidden">
+          <div className="w-px h-12 bg-white/10 relative overflow-hidden">
             <motion.div 
               animate={{ y: ["-100%", "100%"] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
