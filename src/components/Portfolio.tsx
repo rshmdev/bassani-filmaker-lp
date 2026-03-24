@@ -7,24 +7,17 @@ import img4 from '../assets/4.jpg';
 import img5 from '../assets/5.jpg';
 
 const projects = [
+
   {
     id: 1,
-    title: "Ensaio Automotivo",
-    category: "Performance e estética",
-    image: img1,
+    title: "Direção de Fotografia",
+    category: "Gravação da novela - Kwai",
+    image: img4,
     colSpan: "col-span-1 md:col-span-2",
-    rowSpan: "row-span-2",
-  },
-  {
-    id: 2,
-    title: "Retrato",
-    category: "Ensaios",
-    image: img2,
-    colSpan: "col-span-1",
     rowSpan: "row-span-1",
   },
   {
-    id: 3,
+    id: 2,
     title: "Bastidores",
     image: img3,
     colSpan: "col-span-1",
@@ -32,13 +25,22 @@ const projects = [
     objectPosition: "object-[center_100%]",
   },
   {
-    id: 4,
-    title: "Direção de Fotografia",
-    category: "Gravação da novela - Kwai",
-    image: img4,
+    id: 3,
+    title: "Ensaio Automotivo",
+    category: "Performance e estética",
+    image: img1,
     colSpan: "col-span-1 md:col-span-2",
+    rowSpan: "row-span-2",
+  },
+  {
+    id: 4,
+    title: "Retrato",
+    category: "Ensaios",
+    image: img2,
+    colSpan: "col-span-1",
     rowSpan: "row-span-1",
   },
+
   {
     id: 5,
     title: "Cobertura",
