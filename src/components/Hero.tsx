@@ -138,7 +138,7 @@ export function Hero() {
                 >
                   <button 
                     onClick={() => setShowModal(true)}
-                    className="group relative liquid-glass px-8 py-4 rounded-full flex items-center gap-3 overflow-hidden transition-all duration-300 hover:bg-white/10 active:scale-95 cursor-pointer"
+                    className="hidden group relative liquid-glass px-8 py-4 rounded-full items-center gap-3 overflow-hidden transition-all duration-300 hover:bg-white/10 active:scale-95 cursor-pointer"
                   >
                     <span className="relative z-10 text-white font-medium tracking-wide text-sm">Assistir Showreel</span>
                     <Play weight="fill" className="relative z-10 text-white w-4 h-4" />
