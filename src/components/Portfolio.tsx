@@ -1,49 +1,62 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from '@phosphor-icons/react';
+import img1 from '../assets/1.jpg';
+import img2 from '../assets/2.jpg';
+import img3 from '../assets/3.jpg';
+import img4 from '../assets/4.jpg';
+import img5 from '../assets/5.jpg';
 
 const projects = [
   {
     id: 1,
-    title: "Ecos do Silêncio",
-    category: "Curta Metragem",
-    image: "https://images.unsplash.com/photo-1604085422477-941199a4c0ae?q=80&w=2072&auto=format&fit=crop",
+    title: "Ensaio Automotivo",
+    category: "Performance e estética",
+    image: img1,
     colSpan: "col-span-1 md:col-span-2",
     rowSpan: "row-span-2",
   },
   {
     id: 2,
-    title: "Noites de Neon",
-    category: "Comercial",
-    image: "https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=1974&auto=format&fit=crop",
+    title: "Retrato",
+    category: "Ensaios",
+    image: img2,
     colSpan: "col-span-1",
     rowSpan: "row-span-1",
   },
   {
     id: 3,
-    title: "Essência Natural",
-    category: "Documentário",
-    image: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop",
+    title: "Making Of",
+    category: "Gravação da novela - Kwai",
+    image: img3,
     colSpan: "col-span-1",
     rowSpan: "row-span-1",
   },
   {
     id: 4,
-    title: "Pulso Urbano",
-    category: "Videoclipe",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
-    colSpan: "col-span-1 md:col-span-3",
+    title: "Bastidores",
+    category: "Gravação da novela - Kwai",
+    image: img4,
+    colSpan: "col-span-1 md:col-span-2",
+    rowSpan: "row-span-1",
+  },
+  {
+    id: 5,
+    title: "Cobertura",
+    category: "Eventos privados",
+    image: img5,
+    colSpan: "col-span-1",
     rowSpan: "row-span-1",
   }
 ];
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="relative py-32 w-full bg-[#060608] border-t border-white/5">
+    <section id="portfolio" className="py-32 w-full bg-[#060608] relative z-10 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
-        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="max-w-2xl">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -67,53 +80,41 @@ export function Portfolio() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[300px] gap-4">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ 
                 type: "spring", 
-                stiffness: 100, 
-                damping: 20,
+                stiffness: 70, 
+                damping: 20, 
                 delay: index * 0.1 
               }}
-              whileHover={{ y: -5, scale: 0.98 }}
-              className={`group relative overflow-hidden rounded-4xl bg-zinc-900 border border-white/5 ${project.colSpan} ${project.rowSpan} cursor-pointer`}
+              className={`group relative overflow-hidden bg-zinc-900 rounded-3xl ${project.colSpan} ${project.rowSpan} cursor-pointer`}
             >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
-              </div>
-
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 flex justify-between items-end">
-                <div>
-                  <p className="text-zinc-300 text-xs uppercase tracking-[0.2em] font-medium mb-3">
-                    {project.category}
-                  </p>
-                  <h3 className="text-2xl md:text-3xl font-serif text-white">
-                    {project.title}
-                  </h3>
-                </div>
-                
-                {/* Hover Reveal Button */}
-                <div className="w-12 h-12 rounded-full liquid-glass flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  <ArrowUpRight className="text-white w-5 h-5" />
-                </div>
+              {/* Image Asset */}
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-105 opacity-60 mix-blend-luminosity group-hover:opacity-100 group-hover:mix-blend-normal"
+              />
+              
+              {/* Diffusion Shadow & Information Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2 font-medium bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/5">
+                  {project.category}
+                </p>
+                <h3 className="text-2xl md:text-3xl font-serif text-white">{project.title}</h3>
               </div>
             </motion.div>
           ))}
         </div>
-
+        
       </div>
     </section>
   );

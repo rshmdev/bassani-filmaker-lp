@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import img0 from '../assets/0.jpg';
 
 export function About() {
   return (
@@ -15,39 +16,14 @@ export function About() {
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
             >
               <h2 className="text-4xl md:text-5xl font-serif text-white tracking-tight mb-6">
-                A Filosofia da <br />
-                <span className="text-zinc-500 italic font-light">Luz & Sombra.</span>
+                Direção visual em <br />
+                <span className="text-zinc-500 italic font-light">fotografia e vídeo.</span>
               </h2>
               
               <div className="space-y-6 text-zinc-400 text-lg leading-relaxed max-w-[65ch]">
                 <p>
-                  Eu não apenas aponto uma câmera; eu engenho a atmosfera. Cada enquadramento é uma interação meticulosamente desenhada entre espaço negativo, textura e ressonância emocional.
+                  Atuo como fotógrafa e filmaker, com experiência na produção de conteúdos visuais para diferentes segmentos. Desenvolvo projetos que aliam qualidade estética, planejamento e atenção aos detalhes, sempre buscando atender às necessidades e objetivos de cada cliente com profissionalismo e consistência.
                 </p>
-                <p>
-                  Com uma vasta experiência tanto com fotografia impressa tradicional como em cinema digital moderno, a minha abordagem foca estritamente na narrativa. O equipamento serve à história, e não o oposto. Meu estúdio opera com a crença de que o verdadeiro luxo mora na simplicidade visual.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Stats/Metrics (Cockpit Style) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-8 pt-8 border-t border-white/5"
-            >
-              <div>
-                <p className="text-3xl font-mono text-white mb-2 tracking-tighter">12+</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 font-medium">Anos Ativo</p>
-              </div>
-              <div>
-                <p className="text-3xl font-mono text-white mb-2 tracking-tighter">140</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 font-medium">Projetos</p>
-              </div>
-              <div>
-                <p className="text-3xl font-mono text-white mb-2 tracking-tighter">8</p>
-                <p className="text-xs uppercase tracking-[0.2em] text-zinc-500 font-medium">Prêmios</p>
               </div>
             </motion.div>
           </div>
@@ -61,15 +37,19 @@ export function About() {
             className="relative aspect-4/5 w-full rounded-4xl overflow-hidden bg-zinc-900 border border-white/5"
           >
             <img 
-              src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1968&auto=format&fit=crop" 
-              alt="Diretor no set"
-              className="w-full h-full object-cover opacity-70 mix-blend-luminosity"
+              src={img0} 
+              alt="Fotógrafa em ação"
+              className="w-full h-full object-cover opacity-80"
             />
-            {/* Liquid Glass Overlay Element */}
-            <div className="absolute bottom-8 left-8 right-8 liquid-glass p-6 rounded-3xl flex items-center justify-between">
+            
+            {/* Darker Gradient to guarantee text readability */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent"></div>
+            
+            {/* Custom Dark Glass Overlay Element */}
+            <div className="absolute bottom-8 left-8 right-8 bg-[#060608]/80 backdrop-blur-xl border border-white/10 p-6 rounded-3xl flex items-center justify-between shadow-2xl">
               <div>
-                <p className="text-white font-mono text-sm">ARRI Alexa Mini LF</p>
-                <p className="text-zinc-400 text-xs">Câmera Principal</p>
+                <p className="text-white font-mono text-sm tracking-wide">Sony Alpha A6400</p>
+                <p className="text-zinc-400 text-xs mt-1">Câmera Principal</p>
               </div>
               <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
             </div>
